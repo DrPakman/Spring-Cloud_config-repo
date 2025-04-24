@@ -1,3 +1,6 @@
+server:
+  port: 8080
+
 spring:
   application:
     name: gateway
@@ -5,14 +8,17 @@ spring:
     gateway:
       routes:
         - id: product-service
-          uri: lb://product-service  # Маршрутизация к product-service через Eureka
+          uri: lb://product-service  
           predicates:
             - Path=/products/**
         - id: order-service
-          uri: lb://order-service  # Маршрутизация к order-service через Eureka
+          uri: lb://order-service 
           predicates:
             - Path=/orders/**
     eureka:
       client:
         serviceUrl:
-          defaultZone: http://localhost:8761/eureka/  # Адрес Eureka Server
+          defaultZone: http://localhost:8761/eureka/ 
+    	fetch-registry: true
+    	register-with-eureka: true
+
